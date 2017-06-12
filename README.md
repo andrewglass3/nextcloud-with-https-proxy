@@ -20,4 +20,5 @@ In the example above I have created a local host folder called /nextcloud-with-h
 docker-compose up -d from within /nextcloud-with-https-proxy
 
 docker-compose up ## runs in the foreground
+
 docker-compose up -d ## runs it as a background daemonised service.

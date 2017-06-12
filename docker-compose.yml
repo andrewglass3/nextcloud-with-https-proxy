@@ -1,0 +1,39 @@
+version: '2'
+
+services:
+  db:
+    image: mariadb
+    restart: always
+    volumes:
+      - /dockerprojects/nextcloud/mariadb:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpasshere
+      - MYSQL_PASSWORD=databasepasswordhere
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+
+  app:
+    image: nextcloud
+    links:
+      - db
+    volumes:
+      - /dockerprojects/nextcloud/data:/var/www/html
+    restart: always
+    ports:
+      - 80:80
+
+  haproxy:
+    image: jclebreton/https-proxy
+    container_name: haproxy
+    restart: always
+    depends_on:
+      - app
+    links:
+      - app
+    environment:
+      - BACKEND_SERVER=app
+      - BACKEND_PORT=80
+    ports:
+      - 443:443

@@ -11,7 +11,8 @@ Create your local directory for the nextcloud data, and mariadb files
 
 eg /nextcloud-with-https-proxy/data:/var/www/html
 
-In the example above I have created a local host folder called /nextcloud-with-https-proxy/data which is mounted to /var/www/html
+In the example above I have created a local host folder called /nextcloud-with-https-proxy/data which is mounted to /var/www/html within the container.
+
 This will allow your uploaded files and data to remain persistent across reboots.
 
 Cloning this repo will automatically create this for you and the data/mariadb folders with be created when you run the compose up for the first time:

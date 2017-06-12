@@ -5,3 +5,19 @@ This is my configuration for creating a nextcloud server running with mariadb an
 
 All images used in this project were the work of others and thank them in advance for their work.
 
+Local Volumes
+
+Create your local directory for the nextcloud data, and mariadb files
+
+eg /nextcloud-with-https-proxy/data:/var/www/html
+
+In the example above I have created a local host folder called /nextcloud-with-https-proxy/data which is mounted to /var/www/html
+This will allow your uploaded files and data to remain persistent across reboots.
+
+Cloning this repo will automatically create this for you and the data/mariadb folders with be created when you:
+
+In the example above I have created a local host folder called /nextcloud-with-https-proxy/data which is mounted to /var/www/html
+docker-compose up -d from within /nextcloud-with-https-proxy
+
+docker-compose up ## runs in the foreground
+docker-compose up -d ## runs it as a background daemonised service.

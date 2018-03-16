@@ -1,13 +1,11 @@
-version: '3'
+version: '2'
 
 services:
   db:
     image: mariadb
     restart: always
     volumes:
-      - ./nextcloud/mariadb:/var/lib/mysql
-#    ports:
-#      - 3306:3306
+      - /Users/amontgomery/nextcloud/mariadb:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=rootpasshere
       - MYSQL_PASSWORD=databasepasswordhere
@@ -15,27 +13,23 @@ services:
       - MYSQL_USER=nextcloud
 
   app:
-    image: nextcloud
-    restart: always
-    volumes:
-      - ./nextcloud/data:/var/www/html
-#    ports:
-#      - 80:80
+    image: amd64/nextcloud
     links:
       - db
-    depends_on:
-      - db
+    volumes:
+      - /Users/amontgomery/nextcloud/data:/var/www/html
+    restart: always
 
   haproxy:
     image: jclebreton/https-proxy
     container_name: haproxy
     restart: always
-    ports:
-      - 443:443
-    links:
-      - app
     depends_on:
+      - app
+    links:
       - app
     environment:
       - BACKEND_SERVER=app
       - BACKEND_PORT=80
+    ports:
+      - 443:443

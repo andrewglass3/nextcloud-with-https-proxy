@@ -5,7 +5,7 @@ services:
     image: mariadb
     restart: always
     volumes:
-      - /Users/amontgomery/nextcloud/mariadb:/var/lib/mysql
+      - ./nextcloud/mariadb:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=rootpasshere
       - MYSQL_PASSWORD=databasepasswordhere
@@ -17,7 +17,7 @@ services:
     links:
       - db
     volumes:
-      - /Users/amontgomery/nextcloud/data:/var/www/html
+      - ./nextcloud/data:/var/www/html
     restart: always
 
   haproxy:

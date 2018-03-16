@@ -5,7 +5,9 @@ services:
     image: mariadb
     restart: always
     volumes:
-      - ./nextcloud/mariadb:/var/lib/mysql
+      - /nextcloud-with-https-proxy/mariadb:/var/lib/mysql
+#    ports:
+#      - 3306:3306
     environment:
       - MYSQL_ROOT_PASSWORD=rootpasshere
       - MYSQL_PASSWORD=databasepasswordhere
@@ -19,6 +21,8 @@ services:
     volumes:
       - ./nextcloud/data:/var/www/html
     restart: always
+#    ports:
+#      - 80:80
 
   haproxy:
     image: jclebreton/https-proxy

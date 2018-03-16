@@ -19,7 +19,7 @@ services:
     links:
       - db
     volumes:
-      - ./nextcloud/data:/var/www/html
+      - /nextcloud-with-https-proxy/data:/var/www/html
     restart: always
 #    ports:
 #      - 80:80
